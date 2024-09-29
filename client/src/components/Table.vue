@@ -1,62 +1,30 @@
 <template>
-  <n-space vertical size="large">
-    <!-- <n-flex> -->
-    <!-- <n-grid x-gap="12" :cols="4"> -->
-    <!-- <n-gi span="1">  -->
-    <!-- <n-text>  -->
-    <!-- Year: -->
-    <!-- </n-text> -->
-    <!-- </n-gi> -->
-    <!-- <n-gi span="3"> -->
-    <n-select v-model:value="year" :options="yearOptions" />
-    <!-- </n-gi> -->
-    <!-- </n-grid> -->
-    <!-- </n-flex> -->
-    <n-data-table
-      ref="table"
-      :columns="columns"
-      :data="data"
-      :pagination="false"
-      :loading="loading"
-      max-height="90vh"
-    />
-  </n-space>
+  <n-data-table
+    ref="table"
+    :columns="columns"
+    :data="state.scores"
+    :pagination="false"
+    :loading="state.loading"
+    max-height="90vh"
+  />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  NDataTable,
-  NSelect,
-  NSpace,
-  NFlex,
-  NGrid,
-  NGi,
-  NText,
-} from "naive-ui";
+import { NDataTable } from "naive-ui";
 import {
   DataTableColumns,
   DataTableColumn,
   DataTableBaseColumn,
 } from "naive-ui";
-import { getScores } from "../api";
 import type { Score } from "../api";
+import { useStateStore } from "../stores";
 
-const thisYear = new Date().getFullYear();
-
-const tableRef = ref(null);
-const loading = ref(true);
-const year = ref(thisYear);
-const data = ref<Score[]>([]);
-
-const years = Array.from({ length: 10 }, (_, i) => thisYear - i);
-const yearOptions = years.map((year) => ({
-  label: year.toString(),
-  value: year,
-}));
+const state = useStateStore();
+// const table = ref(null);
 
 interface Column extends Omit<DataTableBaseColumn, "key"> {
-  key: keyof Score;
+  key: keyof Score | "home_team_stuff" | "away_team_stuff";
 }
 
 const columns: Column[] = [
@@ -154,11 +122,4 @@ const columns: Column[] = [
     width: 180,
   },
 ];
-
-const games = getScores(year.value).then((res) => {
-  console.log(res);
-  loading.value = false;
-  data.value = res.scores;
-  return res;
-});
 </script>
