@@ -20,7 +20,7 @@ npm run dev
 ```
 cd server
 rye sync
-rye run start
+rye run start   OR    rye run dev
 ```
 
 ## Resources
