@@ -1,8 +1,8 @@
 [project]
-name = "fsapi-template"
+name = "football-ranking-api"
 version = "0.1.0"
 description = "A template for FastAPI project."
-authors = [{ name = "theocheng", email = "zlz_gty@foxmail.com" }]
+authors = [{ name = "phcreery", email = "phcreery@gmail.com" }]
 dependencies = [
     "fastapi>=0.111.0",
     "uvicorn>=0.30.1",
@@ -10,9 +10,12 @@ dependencies = [
     "toml>=0.10.2",
     "requests>=2.32.3",
     "httpx>=0.27.2",
+    "numpy>=2.1.1",
+    "scipy>=1.14.1",
+    "sympy>=1.13.3",
 ]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.9"
 
 
 [build-system]
@@ -25,12 +28,12 @@ build-backend = "hatchling.build"
 "unit" = "scripts:mk_unit"
 "rotate" = "scripts:mk_rotate"
 "init" = "scripts:init_project_details"
-"start" = "fsapi_template.__main__:main"
+"start" = "football_ranking_api.__main__:main"
 
 [tool.rye.scripts]
 # the cmd can be a String or an array of args
 # rye scripts will not be compiled into the executable file
-"dev" = { cmd = "python -m fsapi_template", env = { "RELOAD" = "True", "LOG_LEVEL" = "debug" } }
+"dev" = { cmd = "python -m football_ranking_api", env = { "RELOAD" = "True", "LOG_LEVEL" = "debug" } }
 
 
 [tool.rye]
@@ -44,7 +47,7 @@ dev-dependencies = [
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/fsapi_template", "scripts"]
+packages = ["src/football_ranking_api", "scripts"]
 
 [tool.ruff]
 fix = true

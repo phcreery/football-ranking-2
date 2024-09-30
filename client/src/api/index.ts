@@ -34,12 +34,26 @@ export interface Score {
   notes: string;
 }
 
-interface ScoreResponse {
+export interface Rank {
+  team: string;
+  rating: number;
+  rank: number;
+}
+
+export interface ScoreResponse {
   scores: Score[];
 }
 
+export type RankingResponse = Rank[];
+
 export function getScores(year: number): Promise<ScoreResponse> {
   return fetch(`http://localhost:8001/scores/${year}`).then((response) =>
+    response.json()
+  );
+}
+
+export function getRanking(year: number): Promise<RankingResponse> {
+  return fetch(`http://localhost:8001/ranking/${year}`).then((response) =>
     response.json()
   );
 }

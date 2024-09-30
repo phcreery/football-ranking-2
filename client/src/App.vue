@@ -6,11 +6,14 @@
         <n-layout-content content-style="padding: 14px;">
           <n-space vertical size="large">
             <n-select v-model:value="state.year" :options="yearOptions" />
+            <n-button @click="state.update()">Reload</n-button>
             <n-tabs type="line" animated default-value="scores">
               <n-tab-pane name="scores" tab="Scores">
-                <Table />
+                <Scores />
               </n-tab-pane>
-              <n-tab-pane name="ranking" tab="Ranking"> Ranking </n-tab-pane>
+              <n-tab-pane name="ranking" tab="Ranking">
+                <Ranking />
+              </n-tab-pane>
             </n-tabs>
           </n-space>
         </n-layout-content>
@@ -29,15 +32,16 @@ import {
   NLayoutContent,
   NLayoutFooter,
   NSpace,
-  NCard,
   NConfigProvider,
   NTabs,
   NTabPane,
   NSelect,
+  NButton,
   darkTheme,
   lightTheme,
 } from "naive-ui";
-import Table from "./components/Table.vue";
+import Scores from "./components/Scores.vue";
+import Ranking from "./components/Ranking.vue";
 import { useStateStore } from "./stores";
 
 const state = useStateStore();

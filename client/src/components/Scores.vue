@@ -12,11 +12,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { NDataTable } from "naive-ui";
-import {
-  DataTableColumns,
-  DataTableColumn,
-  DataTableBaseColumn,
-} from "naive-ui";
+import { DataTableBaseColumn } from "naive-ui";
 import type { Score } from "../api";
 import { useStateStore } from "../stores";
 

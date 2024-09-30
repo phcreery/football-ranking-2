@@ -1,5 +1,4 @@
 import httpx
-import asyncio
 
 
 async def request(year: int):
@@ -8,18 +7,16 @@ async def request(year: int):
     authorization = "Bearer NJRgktQC/FilkL37+s4ZSvckBKL/Iox5fw18DumOF+X8u2DntZqcJ44P9imkoG+t"
 
     headers = {
-        "accept": "application/json",
         "Authorization": authorization,
         "X-Requested-With": "https://peyton.creery.org/",
     }
+
+    # response = await app.state.client.get(URL, headers=headers)
+    # print(response)
 
     scores = {}
     async with httpx.AsyncClient() as client:
         resp = await client.get(URL, headers=headers)
         scores = resp.json()
-    print(scores)
-    return scores
 
-
-if __name__ == "__main__":
-    asyncio.run(request(2021))
+    return {"scores": scores}
