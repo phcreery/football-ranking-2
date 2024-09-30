@@ -84,12 +84,10 @@ def rank(data: dict):
     ]
 
     # Sort the array by rating
-    ranking_dict = sorted(
-        ranking_dict, key=lambda k: k["rating"], reverse=True
-    )
+    ranking_dict = sorted(ranking_dict, key=lambda k: k["rating"], reverse=True)
     # add rank to the dict
     for i, team in enumerate(ranking_dict):
         team["rank"] = i + 1
 
-    print(ranking_dict)
+    # print(ranking_dict)
     return ranking_dict
