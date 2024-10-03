@@ -18,7 +18,7 @@ class AppConfig(BaseSettings):
 
 class UvicornConfig(BaseSettings):
     app: str = f"{pj_name}:app".replace("-", "_")
-    host: str = "127.0.0.1"
+    host: str = "0.0.0.0"
     port: int = 8001
     reload: bool = False
     # if reload is True
