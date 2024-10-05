@@ -16,8 +16,7 @@ COPY . .
 RUN npm run build-notsc
 
 # Expose the port that the server will listen on
-EXPOSE 5173
+EXPOSE 80
 
 # Start the application
-# CMD [ "npm", "run", "preview" ]
-CMD [ "npx", "serve", "-s", "dist/", "-l", "5173" ]
+CMD [ "npx", "serve", "-s", "dist/", "-l", "80" ]
