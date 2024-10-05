@@ -1,12 +1,12 @@
 version: '3.3'
 
 services:
-  app:
+  client:
     build:
       context: ./client/
       dockerfile: ./Dockerfile
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:8002:8002"
 
   server:
     env_file:
