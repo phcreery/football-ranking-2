@@ -19,4 +19,4 @@ RUN npm run build-notsc
 EXPOSE 80
 
 # Start the application
-CMD [ "npx", "serve", "-s", "dist/", "-l", "80" ]
+CMD [ "npx", "serve", "-s", "dist/", "-l", "8000" ]

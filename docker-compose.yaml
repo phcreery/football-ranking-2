@@ -6,7 +6,7 @@ services:
       context: ./client/
       dockerfile: ./Dockerfile
     ports:
-      - "127.0.0.1:80:80"
+      - "127.0.0.1:8000:8000"
 
   server:
     env_file:
