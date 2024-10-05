@@ -1,3 +1,9 @@
+import { config } from "./config.ts";
+
+console.log(config);
+
+const URL = `${config.PROTOCOL}://${config.BACKEND}:${config.PORT}${config.BASEURL}`;
+
 export interface Score {
   id: number;
   season: number;
@@ -47,13 +53,10 @@ export interface ScoreResponse {
 export type RankingResponse = Rank[];
 
 export function getScores(year: number): Promise<ScoreResponse> {
-  return fetch(`http://localhost:8001/scores/${year}`).then((response) =>
-    response.json()
-  );
+  console.log(URL);
+  return fetch(`${URL}/scores/${year}`).then((response) => response.json());
 }
 
 export function getRanking(year: number): Promise<RankingResponse> {
-  return fetch(`http://localhost:8001/ranking/${year}`).then((response) =>
-    response.json()
-  );
+  return fetch(`${URL}/ranking/${year}`).then((response) => response.json());
 }

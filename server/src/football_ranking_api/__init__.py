@@ -5,8 +5,11 @@ import httpx
 import asyncio
 from .scores import request
 from .rank import rank
+# from fastapi.routing import APIRouter
 
-app = FastAPI()
+app = FastAPI(root_path="/api/v1")
+# router = APIRouter()
+# app.include_router(router, prefix="/api/v1")
 
 
 @app.get("/")

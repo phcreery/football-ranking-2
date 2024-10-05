@@ -3,9 +3,6 @@ FROM python:3-slim
 
 RUN pip install uv
 
-# Make port available to the world outside this container
-EXPOSE 8001
-
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -27,6 +24,9 @@ RUN uv pip install --no-cache --system -r requirements.lock
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
+
+# Make port available to the world outside this container
+EXPOSE 8001
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # CMD ["gunicorn", "--bind", "0.0.0.0:8001", "-k", "uvicorn.workers.UvicornWorker", "server.src\football_ranking_api\__main__:app"]
