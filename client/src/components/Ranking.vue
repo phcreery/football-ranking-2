@@ -16,7 +16,6 @@ import type { Rank } from "../api";
 import { useStateStore } from "../stores";
 
 const state = useStateStore();
-// const table = ref(null);
 
 interface Column extends Omit<DataTableBaseColumn, "key"> {
   key: keyof Rank;
@@ -32,6 +31,20 @@ const columns: Column[] = [
   {
     title: "Rank",
     key: "rank",
+    defaultSortOrder: "ascend",
+    sorter: "default",
+    width: 80,
+  },
+  {
+    title: "Division",
+    key: "division",
+    defaultSortOrder: "ascend",
+    sorter: "default",
+    width: 80,
+  },
+  {
+    title: "Conference",
+    key: "conference",
     defaultSortOrder: "ascend",
     sorter: "default",
     width: 80,

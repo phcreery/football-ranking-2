@@ -19,4 +19,12 @@ async def request(year: int):
         resp = await client.get(URL, headers=headers)
         scores = resp.json()
 
+        allowed_divisions = ["fbs", "fcs", "ii"]
+        scores = [
+            game
+            for game in scores
+            if (game["home_division"] in allowed_divisions)
+            and (game["away_division"] in allowed_divisions)
+        ]
+
     return {"scores": scores}

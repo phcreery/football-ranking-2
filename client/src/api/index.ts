@@ -44,6 +44,8 @@ export interface Rank {
   team: string;
   rating: number;
   rank: number;
+  division: string;
+  conference: string;
 }
 
 export interface ScoreResponse {

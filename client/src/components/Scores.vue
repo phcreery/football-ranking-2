@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+// import { ref } from "vue";
 import { NDataTable } from "naive-ui";
 import { DataTableBaseColumn } from "naive-ui";
 import type { Score } from "../api";
@@ -34,7 +34,7 @@ const columns: Column[] = [
   {
     title: "Date",
     key: "start_date",
-    width: 180,
+    width: 140,
     render: (row: Score, index: number) => {
       return new Date(row.start_date).toLocaleDateString();
     },
@@ -58,6 +58,22 @@ const columns: Column[] = [
       //     });
       //   },
       // },
+      {
+        title: "Div.",
+        key: "home_division",
+        align: "right",
+        width: 80,
+        // filterOptions: state.divisions,
+        // filter(value: string, row: any) {
+        //   return ~row.address.indexOf(value);
+        // },
+      },
+      {
+        title: "Conf.",
+        key: "home_conference",
+        align: "right",
+        width: 80,
+      },
       {
         title: "Name",
         key: "home_team",
@@ -103,6 +119,18 @@ const columns: Column[] = [
         key: "away_team",
         align: "left",
         width: 180,
+      },
+      {
+        title: "Conf.",
+        key: "away_conference",
+        align: "left",
+        width: 80,
+      },
+      {
+        title: "Div.",
+        key: "away_division",
+        align: "left",
+        width: 80,
       },
     ],
   },

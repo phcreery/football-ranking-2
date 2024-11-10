@@ -5,7 +5,20 @@
         <n-layout-header> <h1>College Football Ranking</h1></n-layout-header>
         <n-layout-content content-style="padding: 14px;">
           <n-space vertical size="large">
+            Year:
             <n-select v-model:value="state.year" :options="yearOptions" />
+            Division:
+            <n-select
+              v-model:value="state.division"
+              :options="state.divisionOptionsLabel"
+              :on-update:value="state.updateDivisionFilter"
+            />
+            Conference:
+            <n-select
+              v-model:value="state.conference"
+              :options="state.conferenceOptionsLabel"
+              :on-update:value="state.updateConferenceFilter"
+            />
             <n-button @click="state.update()">Reload</n-button>
             <n-tabs type="line" animated default-value="scores">
               <n-tab-pane name="scores" tab="Scores">
@@ -17,6 +30,7 @@
             </n-tabs>
           </n-space>
         </n-layout-content>
+        * Division iii is not included in the data
         <n-layout-footer style="height: 64px; padding: 24px"
           >App created by Peyton Creery</n-layout-footer
         >

@@ -48,12 +48,18 @@ def rank(data: dict):
     # logger.info(data)
     # Generate Teams list
     teams = []
+    divisions = []
+    conferences = []
     for game in data:
         if game["home_team"] not in teams:
             teams.append(game["home_team"])
+            divisions.append(game["home_division"])
+            conferences.append(game["home_conference"])
 
         if game["away_team"] not in teams:
             teams.append(game["away_team"])
+            divisions.append(game["away_division"])
+            conferences.append(game["away_conference"])
 
     # Generate game matrix
     M_offense = np.zeros((len(teams), len(teams)), dtype=int)
@@ -68,9 +74,9 @@ def rank(data: dict):
         )
     M_defense = np.transpose(M_offense)
 
-    RankO = compute_ranking(M_offense)
-    RankD = compute_ranking(M_defense)
-    ranking = [weird_division(i, j) for i, j in zip(RankO, RankD)]
+    rank_offense = compute_ranking(M_offense)
+    rank_defense = compute_ranking(M_defense)
+    ranking = [weird_division(i, j) for i, j in zip(rank_offense, rank_defense)]
 
     # Create dict and combine values of teams and ranking
     # ranking_dict = {}
@@ -80,7 +86,15 @@ def rank(data: dict):
 
     # Create array of teams and ranking
     ranking_dict = [
-        {"team": team, "rating": rank} for team, rank in zip(teams, ranking)
+        {
+            "team": team,
+            "rating": rank,
+            "division": division,
+            "conference": conference,
+        }
+        for team, rank, division, conference in zip(
+            teams, ranking, divisions, conferences
+        )
     ]
 
     # Sort the array by rating
