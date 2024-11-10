@@ -18,7 +18,7 @@ COPY . /app
 # Install pip requirements
 COPY requirements.lock .
 # RUN python -m pip install -r requirements.lock
-RUN uv pip install --no-cache --system --no-deps -r requirements.lock
+RUN uv pip install --no-cache --system -r requirements.lock
 # RUN uv sync --frozen
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
